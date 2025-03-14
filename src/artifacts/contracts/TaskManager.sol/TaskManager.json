@@ -1,0 +1,151 @@
+{
+  "abi": [
+    { "type": "constructor", "inputs": [], "stateMutability": "nonpayable" },
+    {
+      "type": "function",
+      "name": "completeTask",
+      "inputs": [
+        { "name": "_taskId", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "createTask",
+      "inputs": [
+        { "name": "_title", "type": "string", "internalType": "string" },
+        { "name": "_description", "type": "string", "internalType": "string" }
+      ],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "deleteTask",
+      "inputs": [
+        { "name": "_taskId", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getAllTasks",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple[]",
+          "internalType": "struct TaskManager.Task[]",
+          "components": [
+            { "name": "id", "type": "uint256", "internalType": "uint256" },
+            { "name": "title", "type": "string", "internalType": "string" },
+            {
+              "name": "description",
+              "type": "string",
+              "internalType": "string"
+            },
+            { "name": "isCompleted", "type": "bool", "internalType": "bool" },
+            { "name": "owner", "type": "address", "internalType": "address" }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "updateTask",
+      "inputs": [
+        { "name": "_taskId", "type": "uint256", "internalType": "uint256" },
+        { "name": "_title", "type": "string", "internalType": "string" },
+        { "name": "_description", "type": "string", "internalType": "string" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "event",
+      "name": "TaskCompleted",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "TaskCreated",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "TaskDeleted",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "TaskUpdated",
+      "inputs": [
+        {
+          "name": "taskId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        }
+      ],
+      "anonymous": false
+    }
+  ]
+}
