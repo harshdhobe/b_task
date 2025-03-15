@@ -20,7 +20,7 @@ function App() {
     isConnected: false
   });
 
-  
+
   useEffect(() => {
     if (state.contract) loadTasks(state.contract);
   }, [state.contract]);
@@ -61,10 +61,12 @@ function App() {
         loading: false
       }));
 
-    
-      window.ethereum.on('accountsChanged', (accounts) => {
+      // Load tasks after setting the account and contract
+      await loadTasks(taskContract);
+
+      window.ethereum.on('accountsChanged', async (accounts) => {
         setState(prev => ({ ...prev, account: accounts[0] }));
-        loadTasks(taskContract);
+        await loadTasks(taskContract);
       });
 
       window.ethereum.on('chainChanged', () => window.location.reload());
@@ -89,13 +91,15 @@ function App() {
       }
 
       const allTasks = await contractToUse.getAllTasks();
-      const formattedTasks = allTasks.map(task => ({
-        id: task.id.toNumber(),
-        title: task.title,
-        description: task.description,
-        isCompleted: task.isCompleted,
-        owner: task.owner
-      }));
+      const formattedTasks = allTasks
+        .map(task => ({
+          id: task.id.toNumber(),
+          title: task.title,
+          description: task.description,
+          isCompleted: task.isCompleted,
+          owner: task.owner
+        }))
+        .filter(task => task.owner.toLowerCase() === state.account.toLowerCase());
 
       setState(prev => ({ ...prev, tasks: formattedTasks, loading: false }));
     } catch (err) {
